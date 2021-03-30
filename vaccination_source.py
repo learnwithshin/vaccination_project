@@ -34,6 +34,11 @@ def get_data_source_from_lws(file_index, save=False, save_file_name="file.csv"):
     return res.content
 
 
+def content_to_df(bytes_content):
+    file_obj = io.BytesIO(bytes_content)
+    return pd.read_csv(file_obj)
+
+
 if __name__ == "__main__":
     get_data_source_from_lws(file_index=0, save=True, save_file_name="countries.csv")
     get_data_source_from_lws(file_index=1, save=True, save_file_name="vacc_data.csv")
