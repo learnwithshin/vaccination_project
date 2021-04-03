@@ -1,3 +1,4 @@
+from datetime import datetime
 import io
 import requests
 import pandas as pd
@@ -38,6 +39,36 @@ def get_data_source_from_lws(file_index, save=False, save_file_name="file.csv"):
 def content_to_df(bytes_content):
     file_obj = io.BytesIO(bytes_content)
     return pd.read_csv(file_obj)
+
+
+def get_confirmed_cases_api(countries):
+    start = "2021-1-1"
+    end = str(datetime.today())
+    
+    params = {"from": start, "to": end}
+    output = []
+    
+    for country in countries:
+        print(f"Calling API for {country}")
+        endpoint = f'https://api.covid19api.com/total/country/{country}/status/confirmed'
+        res = requests.get(endpoint, params)
+        try:
+            data = res.json()
+            for each_record in data:
+                cases = each_record['Cases']
+                date = each_record['Date']
+                output.append({"country": country, "cases": cases, "date": date})
+        except Exception as err:
+            print(f"Error for {country}")
+            print(err)
+            
+    df = pd.DataFrame(output)
+    
+    df['date'] = pd.to_datetime(df['date']).dt.strftime("%Y-%m-%d")
+    df['id'] = df['country'] + df['date']
+            
+        
+    return df 
 
 
 if __name__ == "__main__":
