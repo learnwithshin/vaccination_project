@@ -2,15 +2,15 @@
 
 This project contains the following components:
 
-- A webcrawler that scrapes files about vaccinations from https://learnwithshin.github.io/docs/files/
+- A webcrawler that scrapes contents about country vaccinations from https://learnwithshin.github.io/docs/files/
 
-- Call covid19 API to get covid19 data. Provided by: https://covid19api.com/
+- Call covid19 API to get realtime data. Provided by: https://covid19api.com/
 
-- A database that holds multiple tables to store data obtained from above sources
+- Upload data to a database which holds multiple tables designed for above sources
 
 - The scripts in `main.py` puts everything together
 
-## Demo - Interactive dashboard to presents the data we put together
+## Demo - Interactive dashboard to present the data we put together
 
 See here:
 
