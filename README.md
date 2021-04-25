@@ -10,7 +10,7 @@ This project contains the following components:
 
 - The scripts in `main.py` puts everything together
 
-## Demo - Interactive dashboard to presents the data we put together
+## Demo - Interactive dashboard to present the data we put together
 
 See here:
 
